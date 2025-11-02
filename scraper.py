@@ -6,8 +6,8 @@ def shopee_tw_back_in_stock():
     url = "https://s.shopee.tw/6pr5M2V17Y"  # 蝦皮泡泡瑪特旗艦店
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    stock_price = soup.find("div", class_="YMlKec fxKbKc").text  # 使用 BeautifulSoup 解析網頁並提取股價信息
-    return stock_price
+    quantity = soup.find("div", class_="YMlKec fxKbKc").text  # 使用 BeautifulSoup 解析網頁並提取股價信息
+    return quantity
 
 if __name__ == "__main__":
     stock_price = scrape_tsmc_stock_price()
