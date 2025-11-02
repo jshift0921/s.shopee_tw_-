@@ -1,16 +1,26 @@
 import requests
-from bs4 import BeautifulSoup
-
-# 抓取泡泡瑪特庫存數量
-def scrape_tsmc_stock_price():
-    url = "https://s.shopee.tw/1LW8nu0as9"  # 台灣蝦皮泡泡瑪特旗艦店網站URL
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
-    Stock_quantity = soup.find("div", class_="YMlKec fxKbKc").text  # 使用 BeautifulSoup 解析網頁並提取股價信息
-    return Stock_quantity
-
-if __name__ == "__main__":
-    stock_price = scrape_tsmc_stock_price()
-    message = f"不眠劇場毛絨掛件：{stock_price}"
-    requests.post("https://ntfy.sh/JPopmart",
-    data=message.encode(encoding='utf-8'))
+import json
+# 你的API密钥和访问令牌
+api_key = 'YOUR_API_KEY'
+access_token = 'YOUR_ACCESS_TOKEN'
+# 库存更新API的URL
+inventory_update_url = 'https://s.shopee.tw/1LW8nu0as9'
+# 示例：更新商品库存
+def update_inventory(item_id, stock_quantity):
+headers = {
+'Content-Type': 'application/json',
+'Authorization': 'Bearer ' + access_token,
+'shopid': 'YOUR_SHOP_ID'
+}
+payload = {
+"item_ids": [item_id],
+"stocks": [stock_quantity]
+}
+response = requests.post(inventory_update_url, headers=headers, data=json.dumps(payload))
+if response.status_code == 200:
+print("库存更新成功")
+else:
+print("库存更新失败，错误代码：", response.status_code)
+print(response.text)
+# 调用函数更新库存
+update_inventory(123456789, 10) # 假设商品ID为123456789，更新库存为10件
