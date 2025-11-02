@@ -1,26 +1,25 @@
-import requests
-import json
-# 你的API密钥和访问令牌
-api_key = 'YOUR_API_KEY'
-access_token = 'YOUR_ACCESS_TOKEN'
-# 库存更新API的URL
-inventory_update_url = 'https://s.shopee.tw/1LW8nu0as9'
-# 示例：更新商品库存
-def update_inventory(item_id, stock_quantity):
-headers = {
-'Content-Type': 'application/json',
-'Authorization': 'Bearer ' + access_token,
-'shopid': 'YOUR_SHOP_ID'
-}
-payload = {
-"item_ids": [item_id],
-"stocks": [stock_quantity]
-}
-response = requests.post(inventory_update_url, headers=headers, data=json.dumps(payload))
-if response.status_code == 200:
-print("库存更新成功")
+stock_element = soup.select_one('.stock-status') #替換為正確的選擇器
+
+if stock_element:
+
+stock_quantity = stock_element.text.strip()
+
+print(f"庫存數量: {stock_quantity}")
+
 else:
-print("库存更新失败，错误代码：", response.status_code)
-print(response.text)
-# 调用函数更新库存
-update_inventory(123456789, 10) # 假设商品ID为123456789，更新库存为10件
+
+print("未找到庫存信息”)
+
+except Exception as e:
+
+print(f"發生錯誤: {e}")
+
+if name == "main":
+
+url = "https://s.shopee.tw/1LW8nu0as9”#替換為實際商品網址
+
+while True:
+
+check_stock(url)
+
+time.sleep(60) #每分鐘檢查一次
