@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # 抓取蝦皮即時補貨
-def shopee_tw_back_in_stock():
+def shopee_tw():
     url = "https://s.shopee.tw/1LW8nu0as9"  # 蝦皮泡泡瑪特旗艦店
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
