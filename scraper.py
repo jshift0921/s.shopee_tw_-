@@ -10,7 +10,7 @@ def shopee_tw_back_in_stock():
     return quantity
 
 if __name__ == "__main__":
-    stock_price = scrape_tsmc_stock_price()
+    Product_quantity = shopee_tw_back_in_stock()
     message = f"sp花生惡作劇/發霉小蛋糕耳機包：{stock_price}"
     requests.post("https://ntfy.sh/JPopmart",
     data=message.encode(encoding='utf-8'))
