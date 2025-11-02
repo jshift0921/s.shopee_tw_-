@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-# 抓取台積電股價
-def scrape_tsmc_stock_price():
-    url = "https://www.google.com/finance/quote/2330:TPE"  # 台積電股價GOOGLE網站URL
+# 抓取蝦皮即時補貨
+def shopee_tw_back_in_stock():
+    url = "https://s.shopee.tw/6pr5M2V17Y"  # 蝦皮泡泡瑪特旗艦店
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     stock_price = soup.find("div", class_="YMlKec fxKbKc").text  # 使用 BeautifulSoup 解析網頁並提取股價信息
@@ -11,6 +11,6 @@ def scrape_tsmc_stock_price():
 
 if __name__ == "__main__":
     stock_price = scrape_tsmc_stock_price()
-    message = f"台積電股價：{stock_price}"
-    requests.post("https://ntfy.sh/notifications_made_easy",
+    message = f"sp花生惡作劇/發霉小蛋糕耳機包：{stock_price}"
+    requests.post("https://ntfy.sh/JPopmart",
     data=message.encode(encoding='utf-8'))
